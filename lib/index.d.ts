@@ -2,8 +2,10 @@ import { IFirebaseConfig } from "./config.interafce";
 export declare class FirebaseLogger {
     private application;
     private db;
-    firebaseConfig: IFirebaseConfig;
+    private firebaseConfig;
     constructor();
+    setFirebaseConfig(firebaseConfig: IFirebaseConfig): void;
+    initialize(): void;
     writeData(appName: string, key: string, value: string | object): Promise<void>;
     readData(collectionName: string): Promise<any[]>;
 }

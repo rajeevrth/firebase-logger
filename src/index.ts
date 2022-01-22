@@ -1,26 +1,26 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
   getDocs,
   setDoc,
   doc,
+  Firestore,
 } from "firebase/firestore/lite";
 import { IFirebaseConfig } from "./config.interafce";
 
 export class FirebaseLogger {
-  private application;
-  private db;
-  public firebaseConfig: IFirebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-  };
+  private application!: FirebaseApp;
+  private db!: Firestore;
+  private firebaseConfig!: IFirebaseConfig;
 
-  constructor() {
+  constructor() {}
+
+  public setFirebaseConfig(firebaseConfig: IFirebaseConfig): void {
+    this.firebaseConfig = firebaseConfig;
+  }
+
+  public initialize(): void {
     this.application = initializeApp(this.firebaseConfig);
     this.db = getFirestore(this.application);
   }
