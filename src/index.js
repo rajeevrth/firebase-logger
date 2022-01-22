@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.NgxFirebaseLoggerService = void 0;
+exports.FirebaseLogger = void 0;
 var app_1 = require("firebase/app");
 var lite_1 = require("firebase/firestore/lite");
-var NgxFirebaseLoggerService = /** @class */ (function () {
-    function NgxFirebaseLoggerService() {
+var FirebaseLogger = /** @class */ (function () {
+    function FirebaseLogger() {
         this.firebaseConfig = {
             apiKey: "",
             authDomain: "",
@@ -52,7 +52,7 @@ var NgxFirebaseLoggerService = /** @class */ (function () {
         this.application = app_1.initializeApp(this.firebaseConfig);
         this.db = lite_1.getFirestore(this.application);
     }
-    NgxFirebaseLoggerService.prototype.writeLogs = function (appName, key, value) {
+    FirebaseLogger.prototype.writeData = function (appName, key, value) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -67,7 +67,7 @@ var NgxFirebaseLoggerService = /** @class */ (function () {
             });
         });
     };
-    NgxFirebaseLoggerService.prototype.readLogs = function (appName, firstName, collectionType) {
+    FirebaseLogger.prototype.readData = function (collectionName) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
@@ -77,12 +77,10 @@ var NgxFirebaseLoggerService = /** @class */ (function () {
                             switch (_a.label) {
                                 case 0:
                                     arr = [];
-                                    return [4 /*yield*/, lite_1.getDocs(lite_1.collection(this.db, appName + " : " + firstName + " : " + collectionType))];
+                                    return [4 /*yield*/, lite_1.getDocs(lite_1.collection(this.db, "" + collectionName))];
                                 case 1:
                                     querySnapshot = _a.sent();
-                                    // resolve(querySnapshot);
                                     querySnapshot.forEach(function (doc) {
-                                        // doc.data() is never undefined for query doc snapshots
                                         arr.push(doc.data());
                                     });
                                     resolve(arr);
@@ -93,6 +91,6 @@ var NgxFirebaseLoggerService = /** @class */ (function () {
             });
         });
     };
-    return NgxFirebaseLoggerService;
+    return FirebaseLogger;
 }());
-exports.NgxFirebaseLoggerService = NgxFirebaseLoggerService;
+exports.FirebaseLogger = FirebaseLogger;

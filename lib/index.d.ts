@@ -1,9 +1,9 @@
-import { IFirebaseConfig } from "./firebase-config.interafce";
-export declare class NgxFirebaseLoggerService {
+import { IFirebaseConfig } from "./config.interafce";
+export declare class FirebaseLogger {
     private application;
     private db;
     firebaseConfig: IFirebaseConfig;
     constructor();
-    writeLogs(appName: string, key: string, value: string | object): Promise<void>;
-    readLogs(appName: string, firstName: string, collectionType: string): Promise<any[]>;
+    writeData(appName: string, key: string, value: string | object): Promise<void>;
+    readData(collectionName: string): Promise<any[]>;
 }

@@ -6,9 +6,9 @@ import {
   setDoc,
   doc,
 } from "firebase/firestore/lite";
-import { IFirebaseConfig } from "./firebase-config.interafce";
+import { IFirebaseConfig } from "./config.interafce";
 
-export class NgxFirebaseLoggerService {
+export class FirebaseLogger {
   private application;
   private db;
   public firebaseConfig: IFirebaseConfig = {
@@ -25,7 +25,7 @@ export class NgxFirebaseLoggerService {
     this.db = getFirestore(this.application);
   }
 
-  public async writeLogs(
+  public async writeData(
     appName: string,
     key: string,
     value: string | object
@@ -36,19 +36,13 @@ export class NgxFirebaseLoggerService {
     });
   }
 
-  public async readLogs(
-    appName: string,
-    firstName: string,
-    collectionType: string
-  ): Promise<any[]> {
+  public async readData(collectionName: string): Promise<any[]> {
     return new Promise<any[]>(async (resolve: any) => {
       let arr: any[] = [];
       const querySnapshot = await getDocs(
-        collection(this.db, `${appName} : ${firstName} : ${collectionType}`)
+        collection(this.db, `${collectionName}`)
       );
-      // resolve(querySnapshot);
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         arr.push(doc.data());
       });
       resolve(arr);
