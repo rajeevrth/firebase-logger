@@ -27,10 +27,10 @@ export class FirebaseLogger {
 
   public async writeData(
     appName: string,
-    key: string = new Date().toUTCString(),
+    key: string,
     value: string | object
   ): Promise<void> {
-    await setDoc(doc(this.db, appName, key), {
+    await setDoc(doc(this.db, appName, `${key}-${new Date().toUTCString()}`), {
       key: key,
       value: value,
     });
