@@ -6,6 +6,6 @@ export declare class FirebaseLogger {
     constructor();
     setFirebaseConfig(firebaseConfig: IFirebaseConfig): void;
     initialize(): void;
-    writeData(appName: string, key: string, value: string | object): Promise<void>;
+    writeData(appName: string, key: string | undefined, value: string | object): Promise<void>;
     readData(collectionName: string): Promise<any[]>;
 }

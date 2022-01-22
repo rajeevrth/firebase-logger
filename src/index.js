@@ -50,11 +50,11 @@ var FirebaseLogger = /** @class */ (function () {
         this.db = lite_1.getFirestore(this.application);
     };
     FirebaseLogger.prototype.writeData = function (appName, key, value) {
+        if (key === void 0) { key = new Date().toUTCString(); }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, lite_1.setDoc(lite_1.doc(this.db, appName, new Date().toUTCString()), {
-                            key: key,
+                    case 0: return [4 /*yield*/, lite_1.setDoc(lite_1.doc(this.db, appName, key), {
                             value: value
                         })];
                     case 1:
