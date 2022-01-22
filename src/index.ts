@@ -31,7 +31,8 @@ export class FirebaseLogger {
     value: string | object
   ): Promise<void> {
     await setDoc(doc(this.db, appName, key), {
-      key: value,
+      key: key,
+      value: value,
     });
   }
 

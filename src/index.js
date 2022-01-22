@@ -55,7 +55,8 @@ var FirebaseLogger = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, lite_1.setDoc(lite_1.doc(this.db, appName, key), {
-                            key: value
+                            key: key,
+                            value: value
                         })];
                     case 1:
                         _a.sent();
